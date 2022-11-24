@@ -255,7 +255,7 @@ Para este paso necesitaras crear 3 archivos en tu servidor
     });
 ```
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img2.png))
 
 ## PASO 4: Conectar la base de datos a nuestra página web
 Ahora veremos  los pasos para conectar los datos de nuestro sensor en la vista publica de nuestro proyecto.
