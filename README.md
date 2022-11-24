@@ -1,4 +1,6 @@
 
+
+
 # IOT-ESP32-BME280
 
 Guía rápida para el desarrollo de un proyecto IOT utilizando un sensor BMP280/BME280
@@ -242,9 +244,9 @@ Para este paso necesitaras crear 3 archivos en tu servidor
     $("#slider").roundSlider({
         radius: 72,
         circleShape: "half-top",
-    sliderType: "min-range",
+    	sliderType: "min-range",
         mouseScrollAction: true,
-    value: 19,
+    	value: 19,
         handleSize: "+5",
         min: 10,
         max: 50
@@ -370,4 +372,35 @@ Entonces al asignarle los valores nos quedaría algo como esto:
 ```php
 <body temperatura="<?php echo $temperatura; ?>" presion="<?php echo $presion; ?>" humedad="<?php echo $humedad; ?>">
 ```
-## Finalmente podremos ver los datos agregados en nuestro proyecto
+## Finalmente podremos ver los datos directamente de la base de datos en nuestro proyecto
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+### Parte 2: Crear archivo para que el esp32 pueda enviar información
+Para que nuestro proyecto pueda funcionar, necesitaremos un mediador entre el  `esp32` 
+y nuestro `sitio web`,para eso necesitaremos crear otro archivo llamado `insertar.php`
+
+Nuestro archivo deberá incluir el siguiente código:
+```php
+<?php
+if( $_SERVER["REQUEST_METHOD"] == "POST"){
+    $equipo = $_POST['equipo'];
+    $dispositivo = $_POST['dispositivo'];
+    $id = $_POST['id'];
+    $temperatura = $_POST['temperatura'];
+    $humedad = $_POST['humedad'];
+    $presion = $_POST['presion'];
+    include_once("conect.php");
+    $sql = new SQLConexion();
+    $row = $sql->updateData("
+    INSERT INTO datos_sensor (equipo,temperatura,humedad,presion,fecha_hora) 
+    VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
+    ");
+    echo "Datos registrados por via POST";
+}else{
+    echo "No puedes ingresar los datos manualmente.";
+}
+```
+## PASO 5: Conectar el esp32 y subir el código
+Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [aquí](https://www.arduino.cc/en/software) en su página oficial.
+
+`Nota: Si ya tienes instalado arduino y las librerias puedes omitir este paso.`
