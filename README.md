@@ -375,7 +375,7 @@ Entonces al asignarle los valores nos quedaría algo como esto:
 <body temperatura="<?php echo $temperatura; ?>" presion="<?php echo $presion; ?>" humedad="<?php echo $humedad; ?>">
 ```
 ## Finalmente podremos ver los datos directamente de la base de datos en nuestro proyecto
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img3.png)
+![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img3.png)
 
 ### Parte 2: Crear archivo para que el esp32 pueda enviar información
 Para que nuestro proyecto pueda funcionar, necesitaremos un mediador entre el  `esp32` 
