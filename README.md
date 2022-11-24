@@ -375,7 +375,7 @@ Entonces al asignarle los valores nos quedaría algo como esto:
 <body temperatura="<?php echo $temperatura; ?>" presion="<?php echo $presion; ?>" humedad="<?php echo $humedad; ?>">
 ```
 ## Finalmente podremos ver los datos directamente de la base de datos en nuestro proyecto
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img3.png))
 
 ### Parte 2: Crear archivo para que el esp32 pueda enviar información
 Para que nuestro proyecto pueda funcionar, necesitaremos un mediador entre el  `esp32` 
@@ -394,7 +394,7 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     include_once("conect.php");
     $sql = new SQLConexion();
     $row = $sql->updateData("
-    INSERT INTO datos_sensor (equipo,temperatura,humedad,presion,fecha_hora) 
+    INSERT INTO nombre_de_tu_tabla (equipo,temperatura,humedad,presion,fecha_hora) 
     VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
     ");
     echo "Datos registrados por via POST";
