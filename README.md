@@ -358,12 +358,14 @@ class SQLConexion{
 En el **inicio** del archivo, agregaremos las siguientes lineas de código:
 
 ```php
+<?php
 include_once("conexion.php");
 $sql = new SQLConexion();
 $datos = $sql->selectData("SELECT * FROM tabla;");
 $temperatura = $datos[0]['temperatura'];
 $presion = $temp = $datos[0]['presion'];
 $humedad = $datos[0]['humedad'];
+?>
 ```
 En la linea 15, donde esta escrito `<body temperatura="" presion="" humedad="">` agregaremos los valores en medio de las comillas
 
