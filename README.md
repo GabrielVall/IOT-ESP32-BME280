@@ -39,28 +39,25 @@ Para este paso necesitaras crear 3 archivos en tu servidor
 
 ### En el archivo *index.html* agregaremos las siguientes lineas de código:
 ```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practica ESP32</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
+<body temperatura="" presion="" humedad="">
     <div class="frame">
-        <div id="slider" class="rslider"></div>
+        <div id="slider" class="rslider rs-ie rs-control rs-animation" style="height: 72px; width: 144px;"><div class="rs-container top half" style="height: 72px; width: 144px;"><div class="rs-inner-container"><div class="rs-block rs-outer rs-border rs-split"><div class="rs-path rs-transition rs-range-color" style="transform: rotate(0deg);"></div><div class="rs-path rs-transition rs-range-color" style="opacity: 0; transform: rotate(-180deg);"></div><div class="rs-path rs-transition rs-path-color" style="transform: rotate(0deg); opacity: 1;"></div><div class="rs-path rs-transition rs-path-color" style="opacity: 1; z-index: 1; transform: rotate(-180deg);"></div><span class="rs-block" style="padding: 18px;"><div class="rs-inner rs-bg-color rs-border"></div></span></div></div><div class="rs-bar rs-transition rs-first" style="z-index: 7; transform: rotate(0deg);"><div class="rs-handle rs-move" index="2" tabindex="0" role="slider" aria-label="slider_handle" style="height: 23px; width: 23px; margin: -11.5px 0px 0px -1.5px;" aria-valuenow="10" aria-valuemin="10" aria-valuemax="50"></div></div><span class="rs-bar rs-transition rs-start" style="transform: rotate(0deg);"><span class="rs-seperator rs-border" style="width: 20px; margin-top: -0.5px;"></span></span><span class="rs-bar rs-transition rs-end" style="transform: rotate(180deg);"><span class="rs-seperator rs-border" style="width: 20px; margin-top: -0.5px;"></span></span><span class="rs-tooltip rs-tooltip-text edit" style="margin-left: -36px;">10</span></div><input type="hidden" name="slider" value="10"></div>
         <div class="thermostat">
             <div class="ring">
                 <div class="bottom_overlay"></div>
             </div>
             <div class="control">
-                <div class="temp_outside">PA: 1200</div>
+                <div class="temp_outside">PA: <span id="presion"></span></div>
                 <div class="temp_room"><span>°</span></div>
-                <div class="room">Hum: 30%</div>
+                <div class="room">Hum: <span id="humedad"></span>%</div>
             </div>
         </div>
         <div class="instructions">
@@ -69,7 +66,189 @@ Para este paso necesitaras crear 3 archivos en tu servidor
     </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>                                
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
-<script src="script.js"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Rubik:300,400|Raleway:300');
+ body {
+	 background: #643a7b;
+}
+ .frame {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 width: 400px;
+	 height: 400px;
+	 margin-top: -200px;
+	 margin-left: -200px;
+	 border-radius: 2px;
+	 box-shadow: 0.5rem 1rem 1rem 0 rgba(0, 0, 0, 0.6);
+	 overflow: hidden;
+	 color: #333;
+	 font-family: 'Rubik', Helvetica, sans-serif;
+	 -webkit-font-smoothing: antialiased;
+	 -moz-osx-font-smoothing: grayscale;
+	 background: #201c29;
+}
+ .thermostat {
+	 position: absolute;
+	 width: 200px;
+	 height: 200px;
+	 top: 100px;
+	 left: 100px;
+	 background: #f2f2f2;
+	 border-radius: 50%;
+	 box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.8);
+}
+ .thermostat .control {
+	 position: absolute;
+	 z-index: 5;
+	 width: 130px;
+	 height: 130px;
+	 top: 25%;
+	 left: 35px;
+	 background: #e6e6e6;
+	 border-radius: 50%;
+	 box-shadow: 0 0 1rem rgba(0, 0, 0, 0.7);
+}
+ .thermostat .control .temp_outside {
+	 position: absolute;
+	 top: 25px;
+	 left: 6px;
+	 right: 0;
+	 text-align: center;
+	 font-weight: 300;
+	 font-size: 1rem;
+}
+ .thermostat .control .temp_room {
+	 position: absolute;
+	 top: 34px;
+	 left: 0;
+	 right: 0;
+	 text-align: center;
+	 font-weight: 400;
+	 font-size: 60px;
+	 line-height: 60px;
+	 color: #873183;
+	 letter-spacing: -8px;
+	 padding-right: 12px;
+	 opacity: 1;
+	 transform: translateX(0);
+	 transition: all 0.5s ease-in-out;
+}
+ .thermostat .control .temp_room span {
+	 position: absolute;
+	 top: 0;
+	 right: 37px;
+	 font-size: 2rem;
+	 line-height: 34px;
+	 padding: 3px 0 0 7px;
+	 color: #8e2275;
+}
+ .room {
+	 position: absolute;
+	 bottom: 18px;
+	 left: 0;
+	 right: 0;
+	 text-align: center;
+	 font-weight: 300;
+	 font-size: 1rem;
+}
+ .thermostat .ring {
+	 position: absolute;
+	 width: 180px;
+	 height: 180px;
+	 top: 10px;
+	 left: 10px;
+	 background: url("http://100dayscss.com/codepen/thermostat-gradient.jpg") center center no-repeat;
+	 border-radius: 50%;
+	 box-shadow: inset 2px 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+ .thermostat .ring .bottom_overlay {
+	 position: absolute;
+	 width: 95px;
+	 height: 95px;
+	 top: 50%;
+	 left: 50%;
+	 background: #f2f2f2;
+	 transform-origin: 0 0;
+	 transform: rotate(45deg);
+	 border-radius: 0 0 95px 0;
+}
+ #slider {
+	 position: absolute;
+	 width: 170px;
+	 height: 150px;
+	 top: 36%;
+	 left: 32%;
+	 z-index: 1000;
+}
+ #slider .rs-border {
+	 border-color: transparent;
+}
+ .rs-control .rs-range-color, .rs-control .rs-path-color, .rs-control .rs-bg-color {
+	 background-color: rgba(0, 0, 0, 0);
+}
+ .rs-control .rs-handle {
+	 background-color: rgba(82, 44, 109, 0.8);
+}
+ .rs-tooltip.edit, .rs-tooltip .rs-input, .rs-tooltip-text {
+	 font-family: rubik, helvetica, sans-serif;
+	 font-size: 3.3rem;
+	 background: transparent;
+	 color: #8e2275;
+	 font-weight: 400;
+	 top: 65%;
+	 height: 3.9rem;
+	 padding: 0 !important;
+	 width: 4.5rem;
+}
+ #slider:hover .rs-tooltip, .rs-tooltip:focus, .rs-tooltip-text:focus {
+	 border: none;
+	 transform: scale(1.1);
+	 transition: 0.1s;
+}
+ #slider .rs-transition {
+	 transition-timing-function: cubic-bezier(1, -0.53, 0.405, 1.425);
+}
+ .instructions {
+	 position: absolute;
+	 bottom: 0.5rem;
+	 color: rgba(255, 255, 255, 0.25);
+	 font-size: 1rem;
+	 font-family: raleway, sans-serif;
+	 width: 85%;
+	 left: 10%;
+	 font-weight: 300;
+	 letter-spacing: 0.05rem;
+	 line-height: 1.3;
+	 text-align: center;
+}
+ .fas {
+	 animation: pulse 1s infinite;
+}
+ @keyframes pulse {
+	 50% {
+		 transform: scale(0.9);
+	}
+}
+ 
+</style>
+<script>
+    $('#presion').html($('body').attr('presion'));
+    $('#humedad').html($('body').attr('humedad'));
+    var temp = $('body').attr('temperatura');
+    // jQuery v3.3.1 is supported
+    $("#slider").roundSlider({
+	radius: 72,
+	circleShape: "half-top",
+    sliderType: "min-range",
+	mouseScrollAction: true,
+    value: temp,
+	handleSize: "+5",
+	min: 10,
+	max: 50
+});
+</script>
 </body>
 </html>
 ```
@@ -367,7 +546,7 @@ $presion = $temp = $datos[0]['presion'];
 $humedad = $datos[0]['humedad'];
 ?>
 ```
-En la linea 15, donde esta escrito `<body temperatura="" presion="" humedad="">` agregaremos los valores en medio de las comillas
+En la linea 20, donde esta escrito `<body temperatura="" presion="" humedad="">` agregaremos los valores en medio de las comillas
 
 Para imprimir datos escribiremos `<?php echo $variable; ?>`
 
