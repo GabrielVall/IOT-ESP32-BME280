@@ -427,7 +427,7 @@ Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar d
 
 // Agregar claves de internet
 const char* ssid = "IOT";
-const char* password = "ABCabc123*";
+const char* password = "";
 
 // URL a la que la placa intentara acceder
 const char* serverName = "http://api.conecta.rydevs.com/data_post.php";
