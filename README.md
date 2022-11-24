@@ -14,7 +14,7 @@ mediante una placa ESP32
 ## PASO 1: Crear una base de datos
 Para crear una base de datos entraremos a phpmyadmin desde el servidor y seleccionaremos **importar**.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img1.png)
 
 
 ## Dentro del recuadro agregaremos el siguiente código:
