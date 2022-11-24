@@ -406,3 +406,88 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [aquí](https://www.arduino.cc/en/software) en su página oficial.
 
 `Nota: Si ya tienes instalado arduino y las librerias puedes omitir este paso.`
+```c++
+#ifdef ESP32
+  #include <WiFi.h>
+  #include <HTTPClient.h>
+#else
+  #include <ESP8266WiFi.h>
+  #include <ESP8266HTTPClient.h>
+  #include <WiFiClient.h>
+#endif
+
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+// Agregar claves de internet
+const char* ssid = "IOT";
+const char* password = "ABCabc123*";
+
+// URL a la que la placa intentara acceder
+const char* serverName = "http://api.conecta.rydevs.com/data_post.php";
+
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME280 bme;  // I2C
+
+void setup() {
+  Serial.begin(115200);
+  
+  WiFi.begin(ssid, password);
+  Serial.println("Intentando conectar a la red");
+  while(WiFi.status() != WL_CONNECTED) { 
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Conexion completada, la direccion ip es: ");
+  Serial.println(WiFi.localIP());
+
+  // Selecciona la entrada de datos
+  bool status = bme.begin(0x76);
+  if (!status) {
+    Serial.println("No se encontro un sensor valido (BME280), verifica que no haya falso contacto o la entrada donde esta conectada coincida con el codigo");
+    while (1);
+  }
+}
+
+void loop() {
+  //Si esta conectado a internet
+  if(WiFi.status()== WL_CONNECTED){
+    WiFiClient client;
+    HTTPClient http;
+    
+    // La URL de tu dominio
+    http.begin(client, serverName);
+    
+    // Especificar el content type para el header del POST
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    // Preparar los datos POST a enviar
+    String httpRequestData = "equipo=Docente&dispositivo=2022&id=1200&temperatura=" + String(bme.readTemperature())+ "&humedad=" + String(bme.readHumidity()) + "&presion=" + String(bme.readPressure()/100.0F) + "";
+    Serial.print("httpRequestData: ");
+    Serial.println(httpRequestData);
+
+    // Envia los datos por POST
+    int httpResponseCode = http.POST(httpRequestData);
+
+    // Si la respuesta no dio error
+    if (httpResponseCode>0) {
+      Serial.print("HTTP Codigo de respuesta: ");
+      Serial.println(httpResponseCode);
+    }
+    else {
+      Serial.print("Codigo de error: ");
+      Serial.println(httpResponseCode);
+    }
+    // Termina la conexion del POST
+    http.end();
+  }
+  else {
+    Serial.println("Desconectado del wifi");
+  }
+  //Tiempo de espera entre solicitudes al servidor
+  delay(2500);  
+}
+```
