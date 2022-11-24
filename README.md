@@ -241,16 +241,21 @@ Para este paso necesitaras crear 3 archivos en tu servidor
 ### En el archivo *script.js* agregaremos las siguientes lineas de código:
 
 ```javascript
+     $('#presion').html($('body').attr('presion'));
+    $('#humedad').html($('body').attr('humedad'));
+    var temp = $('body').attr('temperatura');
+    // jQuery v3.3.1 is supported
     $("#slider").roundSlider({
-        radius: 72,
-        circleShape: "half-top",
-    	sliderType: "min-range",
-        mouseScrollAction: true,
-    	value: 19,
-        handleSize: "+5",
-        min: 10,
-        max: 50
-    });
+	radius: 72,
+	circleShape: "half-top",
+    sliderType: "min-range",
+	mouseScrollAction: true,
+    value: temp,
+	handleSize: "+5",
+	min: 10,
+	max: 50
+});
+</script>
 ```
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
 ![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img2.png)
