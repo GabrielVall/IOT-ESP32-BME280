@@ -331,10 +331,9 @@ Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
 
 ```javascript
-$('#presion').html($('body').attr('presion'));
-$('#humedad').html($('body').attr('humedad'));
-var temp = $('body').attr('temperatura');
-// jQuery v3.3.1 is supported
+$('#presion').html($('body').attr('presion'));//Obtenemos la presion
+$('#humedad').html($('body').attr('humedad'));//Obtenemos la humedad
+var temp = $('body').attr('temperatura'); // Obtenemos la temperatura
 $("#slider").roundSlider({
     radius: 72,
     circleShape: "half-top",
@@ -362,7 +361,7 @@ VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
 ```
 
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img2.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/2.png)
 
 # PASO 4: Conectar el esp32 y subir el código
 Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [aquí](https://www.arduino.cc/en/software) en su página oficial.
