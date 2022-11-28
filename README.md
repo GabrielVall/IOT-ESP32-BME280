@@ -10,7 +10,7 @@ mediante una placa ESP32 y alojando en un servidor web gratuito [000webhost](htt
 
 - [@GabrielVall](https://github.com/GabrielVall/)
 
-#### Importante: Tenga en cuenta que este proyecto requiere conocimientos básico en cuanto a administrar un sitio, además de un servidor compatible con php y bases de datos, ya sea un host gratuito como [000webhost](https://mex.000webhost.com/) o con cualquier otro servidor de pago.
+#### Importante: Tenga en cuenta que este proyecto requiere conocimientos básicos en cuanto a administrar un sitio, además de un servidor compatible con php y bases de datos, ya sea un host gratuito como [000webhost](https://mex.000webhost.com/) o con cualquier otro servidor de pago.
 
 # PARTE 1: Crear un hosting en la nube
 
@@ -24,7 +24,24 @@ Necesitaremos tener un hosting compatible con php, y que nos proporcione al meno
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_6.png)
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_7.png)
 
-## PASO 1: Crear una base de datos
+# PARTE 2: Crear una base de datos
+
+## Entraremos a la interfaz de animinstración, entrado primero a el sitio web que acabamos de crear.
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/1.png)
+
+## Entramos en el gestor de base de datos de nuestro sitio
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/1.png)
+
+## Crearemos nuestra base de datos y usuario y contraseña, asegurate de guardar tu contraseña en un lugar seguro
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/2.png)
+
+## 
+
+## Guarda 
+
 Para crear una base de datos entraremos a phpmyadmin desde el servidor y seleccionaremos **importar**.
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img1.png)
