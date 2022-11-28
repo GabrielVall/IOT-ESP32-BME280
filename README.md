@@ -345,6 +345,8 @@ Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sis
 	min: 10,
 	max: 50
 });
+```
+
 ```php
 <?php
 $equipo = $_POST['equipo'];
