@@ -42,7 +42,7 @@ Necesitaremos tener un hosting compatible con php, y que nos proporcione al meno
 - `Nombre de la base de datos (DB Name)`
 - `Usuario de la base de datos (DB User)`
 - `Servidor (DB Host)`
-- `Contraseña (la asignamos al crear nuestra base de datos)
+- `Contraseña (la asignamos al crear nuestra base de datos)`
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/3.png)
 
@@ -50,12 +50,13 @@ Necesitaremos tener un hosting compatible con php, y que nos proporcione al meno
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/4.png)
 
-Para crear una base de datos entraremos a phpmyadmin desde el servidor y seleccionaremos **importar**.
+## Una vez dentro de phpmyadmin, seleccionaremos importar y luego en el tab superior `SQL`
 
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img1.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/5.png)
 
+## Crear la tabla de registros
 
-## Dentro del recuadro agregaremos el siguiente código:
+Dentro de esta ventana, pegaremos el siguiente codigo y presionaremos **continuar**.
 
 ```sql
 CREATE TABLE `datos_sensor` (
@@ -68,6 +69,9 @@ CREATE TABLE `datos_sensor` (
 );
 ```
 Ahora tendremos creada una tabla en la cual podremos insertar la información de los sensores en nuestra base de datos.
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img1.png)
+
 
 ## Paso 2: Crear la vista de nuestra aplicación
 Para este paso necesitaras crear 3 archivos en tu servidor
