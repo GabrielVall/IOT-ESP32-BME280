@@ -38,9 +38,17 @@ Necesitaremos tener un hosting compatible con php, y que nos proporcione al meno
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/2.png)
 
-## 
+## Al crear tu base de datos puedes ver la información de la misma, deberas tener estos datos muy en cuenta
+- `Nombre de la base de datos (DB Name)`
+- `Usuario de la base de datos (DB User)`
+- `Servidor (DB Host)`
+- `Contraseña (la asignamos al crear nuestra base de datos)
 
-## Guarda 
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/3.png)
+
+## Ahora seleccionaremos el boton "Manage" y haremos clic en `phpmyadmin`
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/4.png)
 
 Para crear una base de datos entraremos a phpmyadmin desde el servidor y seleccionaremos **importar**.
 
