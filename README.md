@@ -75,18 +75,24 @@ MODIFY `id_datos` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/6.png)
 
-## Ahora tendremos creada una tabla en la cual podremos insertar la información de los sensores en nuestra base de datos.
 
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/img1.png)
+# PARTE 3: Crear la vista de nuestra aplicación
 
+## Accede al gestor de archivos entrado dentro del panel anterior y seleccionando `file manager`
 
-## Paso 2: Crear la vista de nuestra aplicación
-Para este paso necesitaras crear 3 archivos en tu servidor
-- index.html
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/7.png)
+
+## Accede al gestor de archivos entrado dentro del panel anterior y seleccionando `file manager`
+
+Para este paso necesitaras crear 4 archivos en tu servidor
+- index.php
 - estilos.css
 - script.js
+- conexion.php
+- datos_sensor.php
 
-### En el archivo *index.html* agregaremos las siguientes lineas de código:
+### En el archivo *index.php* agregaremos las siguientes lineas de código:
+
 ```html
 <html lang="es"><head>
     <meta charset="UTF-8">
@@ -304,7 +310,6 @@ Para este paso necesitaras crear 3 archivos en tu servidor
 	min: 10,
 	max: 50
 });
-</script>
 ```
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
 ![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img2.png)
