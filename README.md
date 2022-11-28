@@ -331,19 +331,19 @@ Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
 
 ```javascript
-     $('#presion').html($('body').attr('presion'));
-    $('#humedad').html($('body').attr('humedad'));
-    var temp = $('body').attr('temperatura');
-    // jQuery v3.3.1 is supported
-    $("#slider").roundSlider({
-	radius: 72,
-	circleShape: "half-top",
+$('#presion').html($('body').attr('presion'));
+$('#humedad').html($('body').attr('humedad'));
+var temp = $('body').attr('temperatura');
+// jQuery v3.3.1 is supported
+$("#slider").roundSlider({
+    radius: 72,
+    circleShape: "half-top",
     sliderType: "min-range",
-	mouseScrollAction: true,
+    mouseScrollAction: true,
     value: temp,
-	handleSize: "+5",
-	min: 10,
-	max: 50
+    handleSize: "+5",
+    min: 10,
+    max: 50
 });
 ```
 
