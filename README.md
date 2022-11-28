@@ -5,20 +5,25 @@
 
 Guía completamente detallada para el desarrollo de un proyecto IOT utilizando un sensor BMP280/BME280
 mediante una placa ESP32 y alojando en un servidor web gratuito [000webhost](https://mex.000webhost.com/)
+
 ## Autor
 
 - [@GabrielVall](https://github.com/GabrielVall/)
 
 #### Importante: Tenga en cuenta que este proyecto requiere conocimientos básico en cuanto a administrar un sitio, además de un servidor compatible con php y bases de datos, ya sea un host gratuito como [000webhost](https://mex.000webhost.com/) o con cualquier otro servidor de pago.
+
 # PARTE 1: Crear un hosting en la nube
+
 Necesitaremos tener un hosting compatible con php, y que nos proporcione al menos una ip publica (tambien puede ser un dominio o subdominio) donde veamos los cambios de nuestro proyecto, en este caso utlizaremos [000webhost](https://mex.000webhost.com/) por ser gratuito, sin embargo puedes utilizar cualquier servicio que te proporcione lo mencionado anteriormente.
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_1.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_2.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_3.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_4.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_5.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_6.png)
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/000webhost_7.png)
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_1.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_2.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_3.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_4.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_5.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_6.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/hosting/000webhost_7.png)
+
 ## PASO 1: Crear una base de datos
 Para crear una base de datos entraremos a phpmyadmin desde el servidor y seleccionaremos **importar**.
 
