@@ -82,7 +82,11 @@ MODIFY `id_datos` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/bd/7.png)
 
-## Accede al gestor de archivos entrado dentro del panel anterior y seleccionando `file manager`
+## Ahora entraremos a la carpeta `public_html`
+
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/files/1.png)
+
+Nota: La carpeta public_html almacena los archivos publicos de nuestro servidor, es decir, cualquier persona con el enlace podría ver estos archivos .
 
 Para este paso necesitaras crear 4 archivos en tu servidor
 - index.php
@@ -93,27 +97,39 @@ Para este paso necesitaras crear 4 archivos en tu servidor
 
 ### En el archivo *index.php* agregaremos las siguientes lineas de código:
 
-```html
-<html lang="es"><head>
+Nota: Si intentamos ver nuestro sitio nos nos arrojara un error ya que nos faltarían incluir los demás archivos.
+
+```php
+<?php
+include_once("conexion.php"); // Nos conectamos a nuestra BD
+$sql = new SQLConexion(); // Hacemos la conexion desde el archivo
+$datos = $sql->selectData("SELECT * FROM datos_sensor ORDER BY id_datos DESC LIMIT 20;"); // Seleccionamos los ultimos 20 datos de nuestro sensor
+$temperatura = $datos[0]['temperatura']; // Obtenemos el ultimo registro de temperatura
+$presion = $datos[0]['presion']; // Obtenemos el ultimo registro de de presion
+$humedad = $datos[0]['humedad']; // Obtenemos el ultimo registro de de humedad
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practica ESP32</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-	<link rel="stylesheet" src="estilos.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
-<body temperatura="" presion="" humedad="">
+<body temperatura="<?php echo $temperatura; ?>" humedad="<?php echo $presion; ?>" presion="<?php echo $humedad; ?>">
     <div class="frame">
-        <div id="slider" class="rslider rs-ie rs-control rs-animation" style="height: 72px; width: 144px;"><div class="rs-container top half" style="height: 72px; width: 144px;"><div class="rs-inner-container"><div class="rs-block rs-outer rs-border rs-split"><div class="rs-path rs-transition rs-range-color" style="transform: rotate(0deg);"></div><div class="rs-path rs-transition rs-range-color" style="opacity: 0; transform: rotate(-180deg);"></div><div class="rs-path rs-transition rs-path-color" style="transform: rotate(0deg); opacity: 1;"></div><div class="rs-path rs-transition rs-path-color" style="opacity: 1; z-index: 1; transform: rotate(-180deg);"></div><span class="rs-block" style="padding: 18px;"><div class="rs-inner rs-bg-color rs-border"></div></span></div></div><div class="rs-bar rs-transition rs-first" style="z-index: 7; transform: rotate(0deg);"><div class="rs-handle rs-move" index="2" tabindex="0" role="slider" aria-label="slider_handle" style="height: 23px; width: 23px; margin: -11.5px 0px 0px -1.5px;" aria-valuenow="10" aria-valuemin="10" aria-valuemax="50"></div></div><span class="rs-bar rs-transition rs-start" style="transform: rotate(0deg);"><span class="rs-seperator rs-border" style="width: 20px; margin-top: -0.5px;"></span></span><span class="rs-bar rs-transition rs-end" style="transform: rotate(180deg);"><span class="rs-seperator rs-border" style="width: 20px; margin-top: -0.5px;"></span></span><span class="rs-tooltip rs-tooltip-text edit" style="margin-left: -36px;">10</span></div><input type="hidden" name="slider" value="10"></div>
+        <div id="slider" class="rslider"></div>
         <div class="thermostat">
             <div class="ring">
                 <div class="bottom_overlay"></div>
             </div>
             <div class="control">
-                <div class="temp_outside">PA: <span id="presion"></span></div>
+                <div class="temp_outside">PA: 1200</div>
                 <div class="temp_room"><span>°</span></div>
-                <div class="room">Hum: <span id="humedad"></span>%</div>
+                <div class="room">Hum: 30%</div>
             </div>
         </div>
         <div class="instructions">
@@ -127,7 +143,7 @@ Para este paso necesitaras crear 4 archivos en tu servidor
 </html>
 ```
 ### En el archivo *estilos.css* agregaremos las siguientes lineas de código:
-
+Nota: Esto dara el diseño de la interfaz al usuario
 ```css
 @import url('https://fonts.googleapis.com/css?family=Rubik:300,400|Raleway:300');
  body {
@@ -294,7 +310,7 @@ Para este paso necesitaras crear 4 archivos en tu servidor
 }
 ```
 ### En el archivo *script.js* agregaremos las siguientes lineas de código:
-
+Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 ```javascript
      $('#presion').html($('body').attr('presion'));
     $('#humedad').html($('body').attr('humedad'));
@@ -311,157 +327,42 @@ Para este paso necesitaras crear 4 archivos en tu servidor
 	max: 50
 });
 ```
+### En el archivo *datos.js* agregaremos las siguientes lineas de código:
+Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
+
+```javascript
+     $('#presion').html($('body').attr('presion'));
+    $('#humedad').html($('body').attr('humedad'));
+    var temp = $('body').attr('temperatura');
+    // jQuery v3.3.1 is supported
+    $("#slider").roundSlider({
+	radius: 72,
+	circleShape: "half-top",
+    sliderType: "min-range",
+	mouseScrollAction: true,
+    value: temp,
+	handleSize: "+5",
+	min: 10,
+	max: 50
+});
+```php
+<?php
+$equipo = $_POST['equipo'];
+$temperatura = $_POST['temperatura'];
+$humedad = $_POST['humedad'];
+$presion = $_POST['presion'];
+include_once("conexion.php");
+$sql = new SQLConexion();
+$row = $sql->updateData("
+INSERT INTO datos_sensor (equipo,temperatura,humedad,presion,fecha_hora) 
+VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
+");
+```
+
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
 ![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img2.png)
 
-## PASO 4: Conectar la base de datos a nuestra página web
-Ahora veremos  los pasos para conectar los datos de nuestro sensor en la vista publica de nuestro proyecto.
-
-### Parte 1: Mostrar los datos:
-Primero crearemos un nuevo archivo que se deberá llamar `conexion.php`, además cambiaremos el nombre de nuestro `index.html` a `index.php`
-
-Dentro del archivo `conexion.php` incluiremos el siguiente código:
-```php
-<?php
-class SQLConexion{
-    public $conexion;
-    private $server='localhost'; // Nombre del servidor
-    private $usuario='conecta'; // Usuario del servidor
-    private $clave=''; // Contraseña
-    private $bd='conecta'; // Nombre de la base de datos
-   
-    public function conectar(){ // Conectamos a la base de datos
-        $this->conexion=@new mysqli($this->server,$this->usuario,$this->clave,$this->bd);
-        if ($this->conexion->connect_error) // Si la conexion falla
-            die('Error de Conexion :(');
-        else
-            $this->conexion->set_charset("utf8mb4");
-    }
-
-    //desconectarse a la DB
-    public function desconectar(){
-        $this->conexion->close();
-    }
-
-    //Ejecuta un query y retorna el resultado en un Array
-    //Solo utilizar cuando el resultado del Query provenga de un Select
-    //Ya sea un Select Directo o dentro de un SP
-    public function selectData($QueryString){
-        $this->conectar();
-        $Resultado=$this->conexion->query($QueryString); //Ejecucion del Query
-        $Datos=array(); //Declaracion Array donde almacenaremos nuestros datos
-        $i=0;
-        while($fila=$Resultado->fetch_array()){
-            $Datos[$i]=$fila;
-            $i++;
-        }
-        $this->desconectar();
-        return $Datos;
-    }
-
-    //Para obtener el resultado de ejecutar un query que no devuelve datos, como Insert,Delete,Update.
-    //Resultado retorna TRUE si el query se ejecuto correctamente.
-    public function updateData($QueryString){
-        $this->conectar();
-            $Resultado=$this->conexion->query($QueryString);
-            $this->desconectar();
-        Return $Resultado;
-    }
-
-    // Al igual que el update data, sin embargo es necesario enviar un parametro llamado @_ID
-    public function returnId($QueryString1){
-        $this->conectar();
-        $Resultado1=$this->conexion->query($QueryString1);
-        $Resultado2=$this->conexion->query("SELECT @_ID as _ID;"); //Ejecucion del Query
-        $Datos=array(); //Declaracion Array donde almacenaremos nuestros datos
-        $i=0;
-
-        while($fila=$Resultado2->fetch_array()){
-            $Datos[$i]=$fila;
-            $i++;
-        }
-        $this->desconectar();
-        return $Datos;
-    }
-
-    //Escapa caracteres especiales en un string. Ayuda a prevenir inyecciones SQL
-
-    public function escapar($string){
-        $this->conectar();
-        //Evalua si el argumento que se le pasa es un arreglo
-        if(is_array($string)){
-            $funcion = array($this->conexion,"real_escape_string"); // Si lo es, guarda en un arreglo el contexto y el nombre de la funci贸n real_escape_string
-            $escapedArray = array_map($funcion,$string); // Le aplica dicha función a todo el arreglo
-            return $escapedArray; // Retorna el arreglo ya escapado y sale de la función
-        }
-        // Si no es un arreglo, escapa el string y lo retorna
-        $escapedString = $this->conexion->real_escape_string($string);
-        $this->desconectar();
-        return $escapedString;
-    }
-
-}
-?>
-```
-#### Nota: Solo cambiaras los siguientes datos, donde agregaras la información de tu base de datos
-
-`private $usuario='tu_nombre_de_usuario';`
-
-`private $clave='contraseña_de_tu_bd';`
-
-`private $bd='base_de_datos';`
-
-## Ahora editaremos el archivo index.php
-En el **inicio** del archivo, agregaremos las siguientes lineas de código:
-
-```php
-<?php
-include_once("conexion.php");
-$sql = new SQLConexion();
-$datos = $sql->selectData("SELECT * FROM tabla;");
-$temperatura = $datos[0]['temperatura'];
-$presion = $temp = $datos[0]['presion'];
-$humedad = $datos[0]['humedad'];
-?>
-```
-En la linea 20, donde esta escrito `<body temperatura="" presion="" humedad="">` agregaremos los valores en medio de las comillas
-
-Para imprimir datos escribiremos `<?php echo $variable; ?>`
-
-Entonces al asignarle los valores nos quedaría algo como esto:
-
-```php
-<body temperatura="<?php echo $temperatura; ?>" presion="<?php echo $presion; ?>" humedad="<?php echo $humedad; ?>">
-```
-## Finalmente podremos ver los datos directamente de la base de datos en nuestro proyecto
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/img_tutorial/img3.png)
-
-### Parte 2: Crear archivo para que el esp32 pueda enviar información
-Para que nuestro proyecto pueda funcionar, necesitaremos un mediador entre el  `esp32` 
-y nuestro `sitio web`,para eso necesitaremos crear otro archivo llamado `insertar.php`
-
-Nuestro archivo deberá incluir el siguiente código:
-```php
-<?php
-if( $_SERVER["REQUEST_METHOD"] == "POST"){
-    $equipo = $_POST['equipo'];
-    $dispositivo = $_POST['dispositivo'];
-    $id = $_POST['id'];
-    $temperatura = $_POST['temperatura'];
-    $humedad = $_POST['humedad'];
-    $presion = $_POST['presion'];
-    include_once("conect.php");
-    $sql = new SQLConexion();
-    $row = $sql->updateData("
-    INSERT INTO nombre_de_tu_tabla (equipo,temperatura,humedad,presion,fecha_hora) 
-    VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
-    ");
-    echo "Datos registrados por via POST";
-}else{
-    echo "No puedes ingresar los datos manualmente.";
-}
-```
-## PASO 5: Conectar el esp32 y subir el código
+# PASO 4: Conectar el esp32 y subir el código
 Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [aquí](https://www.arduino.cc/en/software) en su página oficial.
 
 `Nota: Si ya tienes instalado arduino y las librerias puedes omitir este paso.`
