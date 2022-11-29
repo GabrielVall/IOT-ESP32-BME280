@@ -309,25 +309,6 @@ Nota: Esto dara el diseño de la interfaz al usuario
 ### En el archivo *script.js* agregaremos las siguientes lineas de código:
 Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 ```javascript
-     $('#presion').html($('body').attr('presion'));
-    $('#humedad').html($('body').attr('humedad'));
-    var temp = $('body').attr('temperatura');
-    // jQuery v3.3.1 is supported
-    $("#slider").roundSlider({
-	radius: 72,
-	circleShape: "half-top",
-    sliderType: "min-range",
-	mouseScrollAction: true,
-    value: temp,
-	handleSize: "+5",
-	min: 10,
-	max: 50
-});
-```
-### En el archivo *datos.php* agregaremos las siguientes lineas de código:
-Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
-
-```javascript
 $('#presion').html($('body').attr('presion'));//Obtenemos la presion
 $('#humedad').html($('body').attr('humedad'));//Obtenemos la humedad
 var temp = $('body').attr('temperatura'); // Obtenemos la temperatura
@@ -342,6 +323,8 @@ $("#slider").roundSlider({
     max: 50
 });
 ```
+### En el archivo *datos_sensor.php* agregaremos las siguientes lineas de código:
+Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
 
 ```php
 <?php
