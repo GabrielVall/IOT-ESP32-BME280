@@ -1,6 +1,3 @@
-
-
-
 # IOT-ESP32-BME280
 
 Guía completamente detallada para el desarrollo de un proyecto IOT utilizando un sensor BMP280/BME280
@@ -363,8 +360,8 @@ VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
 ### Si abrimos la URL de nuestro sitio veremos algo como esto:
 ![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/2.png)
 
-# PASO 4: Conectar el esp32 y subir el código
-Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [aquí](https://www.arduino.cc/en/software) en su página oficial.
+# PARTE 4: Enviar los datos desde nuestro ESP32
+Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [Este link](https://www.arduino.cc/en/software) en su página oficial.
 
 `Nota: Si ya tienes instalado arduino y las librerias puedes omitir este paso.`
 ```c++
@@ -449,6 +446,6 @@ void loop() {
     Serial.println("Desconectado del wifi");
   }
   //Tiempo de espera entre solicitudes al servidor
-  delay(2500);  
+  delay(5000);  
 }
 ```
