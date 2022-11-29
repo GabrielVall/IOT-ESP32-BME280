@@ -324,7 +324,7 @@ Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 	max: 50
 });
 ```
-### En el archivo *datos.js* agregaremos las siguientes lineas de código:
+### En el archivo *datos.php* agregaremos las siguientes lineas de código:
 Nota: Este archivo establecera una comunicación entre el proyecto y nuestro sistema web
 
 ```javascript
