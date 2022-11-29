@@ -319,8 +319,8 @@ $("#slider").roundSlider({
     mouseScrollAction: true,
     value: temp,
     handleSize: "+5",
-    min: 10,
-    max: 50
+    min: 0,
+    max: 100
 });
 ```
 ### En el archivo *conexion.php* agregaremos las siguientes lineas de código:
@@ -330,9 +330,9 @@ Nota: Esto hara la animación e imprimira los datos en la vista del usuario
 class SQLConexion{
     public $conexion;
     private $server='localhost'; // Nombre del servidor
-    private $usuario='id19867264_usuariobd'; // Usuario del servidor
-    private $clave='Aw5394m<^cl4dEN('; // Contraseña
-    private $bd='id19867264_nombrebd'; // Nombre de la base de datos
+    private $usuario='tu_usuario'; // Usuario del servidor
+    private $clave='tu_contraseña('; // Contraseña
+    private $bd='nombre_de_tu_base_de_datos'; // Nombre de la base de datos
    
     public function conectar(){ // Conectamos a la base de datos
         $this->conexion=@new mysqli($this->server,$this->usuario,$this->clave,$this->bd);
