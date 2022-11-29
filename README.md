@@ -125,7 +125,7 @@ $humedad = $datos[0]['humedad']; // Obtenemos el ultimo registro de de humedad
             </div>
             <div class="control">
                 <div class="temp_outside" id="presion">PA: 1200</div>
-                <div class="temp_room" id="temperatura"><span>°</span></div>
+                <div class="temp_room"><span id="temperatura"></span>°</div>
                 <div class="room" id="humedad">Hum: 30%</div>
             </div>
         </div>
