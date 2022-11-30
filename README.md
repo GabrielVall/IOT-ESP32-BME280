@@ -430,7 +430,16 @@ VALUES ('$equipo', $temperatura, $humedad, $presion, CURRENT_TIMESTAMP);
 # PARTE 4: Enviar los datos desde nuestro ESP32
 Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar desde [Este link](https://www.arduino.cc/en/software) en su página oficial.
 
-`Nota: Si ya tienes instalado arduino y las librerias puedes omitir este paso.`
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/1.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/2.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/3.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/4.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/5.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/6.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/7.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/8.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/1.png)
+
 ```c++
 #ifdef ESP32
   #include <WiFi.h>
