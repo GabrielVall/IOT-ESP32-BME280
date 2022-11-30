@@ -432,24 +432,24 @@ Para este paso necesitaremos tener el IDE de arduino, este lo puedes descargar d
 
 ## Agregando dependencias externas
 ### Entramos a preferencias en "Archivo > Preferencias" o bien "File > Preferences"
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/1.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/1.png)
 ### Agregamos el siguiente link en el recuadro que esta debajo
 `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/2.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/2.png)
 ### Agregamos la placa esp32 a arduino
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/3.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/3.png)
 ### Buscamos esp32 en el buscador e instalamos
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/4.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/4.png)
 ## Agregamos la libreria del sensor bme280
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/5.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/5.png)
 ### Buscamos `adafruit bme280`
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/6.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/6.png)
 ### Presionamos `install all` o `instalar todo`
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/7.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/7.png)
 ### Seleccionamos la placa
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/8.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/8.png)
 ### Seleccionamos puerto
-![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/arduino/9.png)
+![App Screenshot](https://raw.githubusercontent.com/GabrielVall/IOT-ESP32-BME280/main/imagenes/arduino/9.png)
 
 ```c++
 #ifdef ESP32
